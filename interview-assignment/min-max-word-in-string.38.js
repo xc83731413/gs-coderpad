@@ -30,4 +30,4 @@ console.log(`Minimum length word: ${minMax.min} Maximum length word: ${minMax.ma
 
 const minMaxSort = findMinMaxBySorting(givenStr);
 console.log(`By Js Sorting:`);
-console.log(`Minimum length word: ${minMaxSort.min} Maximum length word: ${minMaxSort.max}`)
+console.log(`Minimum length word: ${minMaxSort.min} Maximum length word: ${minMaxSort.max}`);
