@@ -1,5 +1,4 @@
-const sortedVideoWatchList = (videoArr) => videoArr.sort((a, b) => b.counter - a.counter)
-                                    .slice(0, 10).map((item) => item.name);
+const sortedVideoWatchList = (videoArr) => videoArr.sort((a, b) => b.counter - a.counter).slice(0, 10).map((item) => item.name);
 
 
 
