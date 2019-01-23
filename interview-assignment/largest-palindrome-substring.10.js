@@ -1,6 +1,6 @@
 const givenString = 'andnoondon';
 const givenString1 = 'constmalayalam';
-const givenString2 = 'popdildo';
+const givenString2 = 'popdilmo';
 
 const checkPalindrome = (str) => {
   return str === str.split('').reverse().join('');
