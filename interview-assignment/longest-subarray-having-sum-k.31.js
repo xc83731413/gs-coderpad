@@ -23,7 +23,7 @@ const atMostSum = (givenArr, sum) => {
 
 const atMostSumByReducer = (givenArr, sum) => {
   let dummyArr = [], arraySet = [];
-  for(let i=0; i<givenArr.length; i++){
+  for(let i=0; i<givenArr.length-1; i++){
     for(let j=i+1; j<givenArr.length; j++){
       dummyArr = givenArr.slice(i, j);
       if(sum === dummyArr.reduce((acc, item) => acc+item, 0)){
