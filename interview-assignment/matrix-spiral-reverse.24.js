@@ -14,7 +14,10 @@ const givenArr2 = [
 const reverseSpiral = (givenArr, resultArr) => {
   
   if(givenArr.length == 0){
-    return resultArr;
+    return resultArr.reverse();
+  }
+  if(givenArr.length === 1){
+    return [...resultArr, ...givenArr[0]].reverse();
   }
   //console.log(givenArr, resultArr);
   resultArr = [
@@ -25,8 +28,9 @@ const reverseSpiral = (givenArr, resultArr) => {
     ...givenArr.map(item => item.shift()).reverse()
   ];
   
-  reverseSpiral(givenArr, resultArr);
+  return reverseSpiral(givenArr, resultArr);
 };
 
 console.log(`Reverse order spiral for givenArr2: `, reverseSpiral(givenArr2.map(item => item.slice(0)), []));
+console.log(`Reverse order spiral for givenArr1: `, reverseSpiral(givenArr1.map(item => item.slice(0)), []));
 ///console.log([...givenArr2]);

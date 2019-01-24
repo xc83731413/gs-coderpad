@@ -8,6 +8,11 @@ const input = [
   [9,  10, 11, 12],
   [13, 14, 15, 16]
 ];
+const givenArr = [
+  [1, 2, 3, 4, 5, 6],
+  [7, 8, 9, 10, 11, 12],
+  [13, 14, 15, 16, 17, 18]
+];
 const sprialTravarsal = (matrix) => {
   let result = [];
   const goAround = (givenMatrix) => {
@@ -40,7 +45,7 @@ const sprialTravarsal = (matrix) => {
 //es6 array functions operation
 const sprialES6Format = (matrix) => {
   let result = [];
-  while(matrix.length){
+  while(matrix.length > 1){
     result = [
       ...result,
       ...matrix.shift(),
@@ -50,6 +55,10 @@ const sprialES6Format = (matrix) => {
     ];
   }
 
+  if(matrix.length === 1){
+    result = [...result, ...matrix[0]];
+  }
+
   return result;
 }
 
@@ -57,5 +66,8 @@ const updatedResult = sprialTravarsal(input.map(item => item.slice(0)));
 console.log(`sprial: ${updatedResult}`);
 
 
-const es6MatrixSprial = sprialES6Format(input.map(item => item.slice(0)));
-console.log(`es6 sprial: ${es6MatrixSprial}`);
+let es6MatrixSprial = sprialES6Format(input.map(item => item.slice(0)));
+console.log(`es6 sprial: `, es6MatrixSprial);
+
+es6MatrixSprial = sprialES6Format(givenArr.map(item => item.slice(0)));
+console.log(`es6 sprial for givenArr: `, es6MatrixSprial);
