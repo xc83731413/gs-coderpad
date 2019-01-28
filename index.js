@@ -75,10 +75,14 @@ const handlers = {
   sample: (data, callback) => {
     callback(406, {name: 'sample handler'});
   },
+  ping: (data, callback) => {
+    callback(200);
+  },
   notFound: (data, callback) => {
     callback(404);
   }
 };
 const router = {
-  'sample': handlers.sample
+  'sample': handlers.sample,
+  'ping': handlers.ping
 };
