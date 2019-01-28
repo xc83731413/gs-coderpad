@@ -1,10 +1,12 @@
 const environment = {
   development: {
-    port: 3001,
+    httpPort: 3001,
+    httpsPort: 3002,
     envName: 'development'
   },
   production: {
     port: 2200,
+    httpsPort: 2201,
     envName: 'production'
   }
 };

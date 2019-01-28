@@ -1,11 +1,36 @@
 //import http from 'http';
 const http = require('http');
+const https = require('https');
 const url = require('url');
 const { StringDecoder } = require('string_decoder');
 const config = require('./config');
+const fs = require('fs');
+const os = require('os');
 
-const server = http.createServer((req, res) => {
+const httpServer = http.createServer((req, res) => {
+  unifiedServer(req, res);
+});
 
+
+
+httpServer.listen(config.httpPort, () => {
+  console.log(`initial server started port: ${config.httpPort}`);
+  console.log(os.userInfo());
+});
+
+const httpsServerOptions = {
+  'key': fs.readFileSync('./https/key.pem'),
+  'cert': fs.readFileSync('./https/cert.pem')
+};
+
+const httpsServer = https.createServer(httpsServerOptions, (req, res) => {
+  unifiedServer(req, res);
+})
+httpsServer.listen(config.httpsPort, () => {
+  console.log(`Initiating https server with port: ${config.httpsPort}`);
+})
+
+const unifiedServer = (req, res) => {
   const pathUrl = url.parse(req.url, true);
   const trimmedPath = pathUrl.path.replace(/^\/+|\/+$/g, '');
   const method = req.method;
@@ -44,13 +69,7 @@ const server = http.createServer((req, res) => {
     // res.end('Initial request server');
     // console.log(`Existing payload: ${buffer}`);
   });
-  
-});
-
-
-server.listen(config.port, () => {
-  console.log(`initial server started port: ${config.port}`);
-});
+};
 
 const handlers = {
   sample: (data, callback) => {
