@@ -3,9 +3,16 @@ const http = require('http');
 const https = require('https');
 const url = require('url');
 const { StringDecoder } = require('string_decoder');
-const config = require('./config');
 const fs = require('fs');
 const os = require('os');
+
+const config = require('./config');
+const fileOpt = require('./lib/custom-file-handling');
+
+
+//file handling custom operations
+const FileHandle = require('./lib/data');
+const fileHandle = new FileHandle();
 
 const httpServer = http.createServer((req, res) => {
   unifiedServer(req, res);
@@ -14,6 +21,15 @@ const httpServer = http.createServer((req, res) => {
 
 
 httpServer.listen(config.httpPort, () => {
+  // fileOpt.create('init', 'init', {name: 'koushik'}, (msg) => {
+  //   console.log(msg, 'fired');
+  // });
+
+  fileHandle.create('init', 'test', {name: 'test-only'}).then((msg) => {
+    if(msg)
+      console.log(msg, 'no');
+  }).catch( error => console.log(error));
+  
   console.log(`initial server started port: ${config.httpPort}`);
   console.log(os.userInfo());
 });
