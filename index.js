@@ -16,20 +16,19 @@ const fileHandle = new FileHandle();
 
 const httpServer = http.createServer((req, res) => {
   unifiedServer(req, res);
-});
-
-
-
-httpServer.listen(config.httpPort, () => {
   // fileOpt.create('init', 'init', {name: 'koushik'}, (msg) => {
   //   console.log(msg, 'fired');
   // });
 
-  fileHandle.create('init', 'test', {name: 'test-only'}).then((msg) => {
+  fileHandle.create('init', 'moose', {name: 'test-only'}).then((msg) => {
     if(msg)
-      console.log(msg, 'no');
+      console.log(msg);
   }).catch( error => console.log(error));
-  
+});
+
+
+
+httpServer.listen(config.httpPort, () => {  
   console.log(`initial server started port: ${config.httpPort}`);
   console.log(os.userInfo());
 });
@@ -43,6 +42,10 @@ const httpsServer = https.createServer(httpsServerOptions, (req, res) => {
   unifiedServer(req, res);
 })
 httpsServer.listen(config.httpsPort, () => {
+  fileHandle.read('init', 'moose').then((msg) => {
+    console.log(msg);
+  }).catch( error => console.log(error));
+
   console.log(`Initiating https server with port: ${config.httpsPort}`);
 })
 
