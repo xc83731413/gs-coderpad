@@ -44,10 +44,25 @@ const httpsServer = https.createServer(httpsServerOptions, (req, res) => {
 httpsServer.listen(config.httpsPort, () => {
   fileHandle.read('init', 'moose').then((msg) => {
     console.log(msg);
+    updateFileData('init', 'moose');
   }).catch( error => console.log(error));
 
   console.log(`Initiating https server with port: ${config.httpsPort}`);
 })
+
+/**
+ * updating file data
+ * @param {*} req 
+ * @param {*} res 
+ */
+const updateFileData = async (dir, file) => {
+  await fileHandle.update(dir, file, {newName: 'My own name!'});
+  deleteFile(dir, file);
+};
+const deleteFile = (dir, file) => {
+  fileHandle.delete(dir, file);
+}
+
 
 const unifiedServer = (req, res) => {
   const pathUrl = url.parse(req.url, true);
