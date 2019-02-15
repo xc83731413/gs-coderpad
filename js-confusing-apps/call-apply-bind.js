@@ -23,18 +23,30 @@ var zipcode = {
 }
 //zipcode.checkZipcode();
 
-
+/**
+ * 
+ * creating own js array functions and use it
+ * getIterator with get single element
+ * then next method will return the element
+ */
 const arr = ['john', 'mom'];
+Array.prototype.setIndex = -1;
 Array.prototype.getIterator = function() {
-  return this[0];
+  this.setIndex++;
+};
+Array.prototype.next = function () {
+  return this[this.setIndex];
 }
+arr.getIterator();
+console.log(`calling getIterator, then calling next- ${arr.next()}`)
 // giving error
 // Array.prototype = {
 //   getIterator: () => this[0]
 // };
 // Arrow functions dose not have prototype property
 
-console.log(arr.getIterator());
+//console.log(arr.getIterator());
+
 /**
  * arrow functions is unused for object methods
  * https://medium.com/tfogo/advantages-and-pitfalls-of-arrow-functions-a16f0835799e
