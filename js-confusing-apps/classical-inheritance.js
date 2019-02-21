@@ -28,6 +28,16 @@ Circle1.prototype.area = function() {
 };
 const cr = new Circle1(5,6,7);
 console.log(`Circle area is - ${cr.area()}`);
+
+function Square(x, y){
+  Shape.call(this, x, y);
+}
+Square.prototype = new Shape();
+Square.prototype.area = function(){
+  return this.x*this.y;
+}
+const sq = new Square(5,6);
+console.log(`square area is: ${sq.area()}`);
 /**
  * 
  * refer to another link
@@ -56,7 +66,6 @@ const ctObj = {
 };
 let newObj={};
 for(single in ctObj){
-  cntr++;
   newObj = {...newObj, [single]: ctObj[single]};
 }
 console.log(newObj);
